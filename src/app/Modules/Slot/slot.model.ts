@@ -13,17 +13,17 @@ const slotSchema = new Schema<TSlot>(
       required: true,
     },
     startTime: {
-      type: Date,
+      type: String,
       required: true,
     },
     endTime: {
-      type: Date,
+      type: String,
       required: true,
     },
     isBooked: {
       type: String,
       enum: ['available', 'booked', 'cancelled'],
-      required: true,
+      default: 'available',
     },
   },
   { timestamps: true },
