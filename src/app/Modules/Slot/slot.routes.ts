@@ -5,6 +5,7 @@ import { USER_ROLE } from '../User/user.constant';
 
 const router = Router();
 
-
+//get all slots
+router.get('/availability', SlotController.getAllSlots);
 
 export const slotRoutes = router;

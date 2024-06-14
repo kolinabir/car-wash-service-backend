@@ -25,6 +25,12 @@ const createNewSlot = async (slot: TSlot) => {
   return slots;
 };
 
+const getAllSlotsFromDB = async () => {
+  const result = await Slot.find({ isBooked: 'available' });
+  return result;
+};
+
 export const SlotService = {
   createNewSlot,
+  getAllSlotsFromDB,
 };
