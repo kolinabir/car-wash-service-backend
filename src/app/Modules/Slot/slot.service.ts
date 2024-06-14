@@ -4,25 +4,22 @@ import { Slot } from './slot.model';
 const createNewSlot = async (slot: TSlot) => {
   const { service, date, startTime, endTime } = slot;
 
-  const startDateTime = new Date(`${date}T${startTime}:00`);
-  const endDateTime = new Date(`${date}T${endTime}:00`);
-
+  // Create slots
   const slots = [];
-  let currentTime = startDateTime;
+  let startHour = parseInt(startTime.split(':')[0]);
+  const endHour = parseInt(endTime.split(':')[0]);
 
-  while (currentTime < endDateTime) {
-    const endTime = new Date(currentTime);
-    endTime.setHours(endTime.getHours() + 1);
-
+  while (startHour < endHour) {
     const slot = new Slot({
-      service,
+      service: service,
       date,
-      startTime: currentTime.toISOString().substr(11, 5),
-      endTime: endTime.toISOString().substr(11, 5),
+      startTime: `${startHour}:00`,
+      endTime: `${startHour + 1}:00`,
+      isBooked: 'available',
     });
-
-    slots.push(await slot.save());
-    currentTime = endTime;
+    await slot.save();
+    slots.push(slot);
+    startHour++;
   }
 
   return slots;
