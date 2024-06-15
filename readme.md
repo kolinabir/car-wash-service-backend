@@ -60,10 +60,53 @@ JWT_SECRET = zLxM2rP5tUwX8qA1bVn4mC7dFgH3jK6oD9sG2hJ5kN8zLxM2rP5tUwX8qA1bVn4mC7d
 npm run dev
 ```
 
-
-
 ## API Endpoints
 
-### Auth Routes
+## Live URL
 
+[live](https://https://carwash-plum.vercel.app)
 
+```bash
+https://carwash-plum.vercel.app
+```
+
+Sure, here are the endpoints for the Car Washing System:
+
+### User Routes
+
+1. **User Sign Up**
+
+   - **Route**: `/api/auth/signup` (**POST**)
+
+2. **User Login**
+   - **Route**: `/api/auth/login` (**POST**)
+
+### Service Routes
+
+3. **Create Service (Only Accessible by Admin)**
+
+   - **Route:** `/api/services` (**POST**)
+
+4. **Get a Service**
+
+   - **Route:** `/api/services/:id` (**GET**)
+
+5. **Get All Services**
+
+   - **Route:** `/api/services` (**GET**)
+
+6. **Update Service (Only Accessible by Admin)**
+
+   - **Route:** `/api/services/:id` (**PUT**)
+
+7. **Delete a Service (Only Accessible by Admin)**
+   - **Route:** `/api/services/:id` (**DELETE**)
+
+### Slot Routes
+
+8. **Create Slot (Only Accessible by Admin)**
+
+   - **Route:** `/api/services/slots` (**POST**)
+
+9. **Get Available Slots**
+   - **Route:** `/api/slots/availability` (**GET**)
