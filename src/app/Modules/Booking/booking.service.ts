@@ -27,6 +27,24 @@ const bookAServiceToDB = async (data: TBBooking, email: string) => {
   return booking;
 };
 
+const getAllBookingsFromDB = async () => {
+  const result = await Booking.find().populate('service slot customer');
+  return result;
+};
+
+const getBookingByMailFromDB = async (email: string) => {
+  const user = await User.findOne({ email });
+  if (!user) {
+    throw new Error('User not found');
+  }
+  const result = await Booking.find({ customer: user._id }).populate(
+    'service slot customer',
+  );
+  return result;
+};
+
 export const BookingService = {
   bookAServiceToDB,
+  getAllBookingsFromDB,
+  getBookingByMailFromDB,
 };

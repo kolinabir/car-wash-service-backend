@@ -11,11 +11,33 @@ const bookAService = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Service Booked successfully',
+    message: 'Booking successful',
+    data: result,
+  });
+});
+
+const getAllBookings = catchAsync(async (req, res) => {
+  const result = await BookingService.getAllBookingsFromDB();
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'All bookings retrieved successfully',
+    data: result,
+  });
+});
+
+const getBookingByMail = catchAsync(async (req, res) => {
+  const result = await BookingService.getBookingByMailFromDB(req.user.email);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'User bookings retrieved successfully',
     data: result,
   });
 });
 
 export const BookingController = {
   bookAService,
+  getAllBookings,
+  getBookingByMail,
 };
